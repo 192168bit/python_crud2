@@ -7,7 +7,7 @@ class GetUserSchema(ma.Schema):
     email = ma.String(required=True)
     
 class UserSchema(ma.Schema):
-    id = ma.Integer()
+    id = ma.Integer(dump_only=True)
     first_name = ma.String(required=True)
     last_name = ma.String(required=True)
     email = ma.String(required=True)

@@ -20,7 +20,7 @@ def all_users():
     return (response_data), 200
 
 
-@user_api_blueprint.route("/add-user", methods=["POST"])
+@user_api_blueprint.route("/users", methods=["POST"])
 @body(user_schema)
 def add_user(kwargs):
     new_user = User(**kwargs)
@@ -45,7 +45,7 @@ def add_user(kwargs):
     return jsonify(response_data), 201
 
 
-@user_api_blueprint.route("/update-user/<int:id>", methods=["PUT"])
+@user_api_blueprint.route("/users/<int:id>", methods=["PUT"])
 def update_user(id):
     data = request.get_json()
     user = User.query.get(id)
@@ -72,7 +72,7 @@ def update_user(id):
     return jsonify(response_data), 200
 
 
-@user_api_blueprint.route("/delete-user/<int:id>", methods=["DELETE"])
+@user_api_blueprint.route("/users/<int:id>", methods=["DELETE"])
 def delete_user(id):
     user = User.query.get(id)
     database.session.delete(user)
