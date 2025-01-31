@@ -13,11 +13,25 @@ user_schema = UserSchema()
 
 @user_api_blueprint.route("/users", methods=["GET"])
 def all_users():
-    users = User.query.all()
+    users = User.query.order_by(User.id.asc()).all()
     users_data = [user.to_dict() for user in users]
     response_data = json.dumps({"users": users_data})
 
     return (response_data), 200
+
+@user_api_blueprint.route("/users/<int:id>", methods=["GET"])
+def get_user(id):
+    user = User.query.get(id)
+    if user:
+        response_data = {
+            "id": user.id,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.email,
+        }
+        return jsonify(response_data), 200
+    else:
+        return jsonify({"error": "User not found"}), 404
 
 
 @user_api_blueprint.route("/users", methods=["POST"])
