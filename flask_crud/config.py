@@ -8,6 +8,10 @@ class Config():
     SECRET_KEY = os.getenv("SECRET_KEY")
     FLASK_ENV = os.getenv("FLASK_ENV")
     DEBUG = os.getenv("DEBUG")
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SUPABASE_URL = os.getenv("SUPABASE_URL")
+    SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+    SUPABASE_BUCKET = os.getenv("SUPABASE_BUCKET")
 
 class DevelopmentConfig():
     DEBUG = True
